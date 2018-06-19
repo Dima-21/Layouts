@@ -5,8 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Демонстрация контейнеров компоновки" 
+        MinHeight="200" MinWidth="300"
+        MaxHeight="700" MaxWidth="1000"
+        Height="400" Width="600">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="Padding" Value="15, 1"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="127*"/>
+            <ColumnDefinition Width="465*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
+            <TabItem Header="StackPanel">
+                <StackPanel Orientation="Vertical">
+                <Button Content="Button-1"/>
+                <Button Content="Button-2"/>
+                <Button Content="Button-3"/>
+                <Button Content="Button-4"/>
+                <Button Content="Button-5"/>
+                </StackPanel>
+            </TabItem>
+            
+            <TabItem Header="WrapPanel">
+                <WrapPanel Orientation="Horizontal"
+                           HorizontalAlignment="Center">
+                    <Button Content="Button-1"/>
+                    <Button Content="Button-2"/>
+                    <Button Content="Button-3"/>
+                    <Button Content="Button-4"/>
+                    <Button Content="Button-5"/>
+                </WrapPanel>
+            </TabItem>
+            
+            <TabItem Header="DockPanel">
+                <DockPanel>
+                    <Button Content="Button-1" DockPanel.Dock="Top"/>
+                    <Button Content="Button-2" DockPanel.Dock="Bottom"/>
+                    <Button Content="Button-3" DockPanel.Dock="Left"/>
+                    <Button Content="Button-4" DockPanel.Dock="Right"/>
+                    <Button Content="Button-5"/>
+                </DockPanel>
+            </TabItem>
+            
+            <TabItem Header="Canvas">
+                <Canvas>
+                    <Button Content="Button-1" Canvas.Top="50"/>
+                    <Button Content="Button-2" Canvas.Top="100"/>
+                    <Image  Source="Image/bob.gif" Width="400" 
+                            Canvas.Left="205" Canvas.Top="40"/>
+                </Canvas>
+            </TabItem>
+         
+            <TabItem Header="UniformGrid">
+                <UniformGrid >
+                    <Button Content="1"/>
+                    <Button Content="2"/>
+                    <Button Content="3"/>
+                    <Button Content="4"/>
+                    <Button Content="5"/>
+                    <Button Content="6"/>
+                    <Button Content="7"/>
+                    <Button Content="8"/>
+                    <Button Content="9"/>
+                </UniformGrid>
+            </TabItem>
+            
+            <TabItem Header="Grid">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="1" Grid.Row="0" Grid.Column="0"
+                            Grid.RowSpan="3"/>
+                    <Button Content="2" Grid.Row="0" Grid.Column="1" 
+                            Grid.ColumnSpan="2"/>
+                    <!--<Button Content="3" Grid.Row="0" Grid.Column="2"/>-->
+                    <!--<Button Content="4" Grid.Row="1" Grid.Column="0"/>-->
+                    <Button Content="5" Grid.Row="1" Grid.Column="1"/>
+                    <Button Content="6" Grid.Row="1" Grid.Column="2"/>
+                    <!--<Button Content="7" Grid.Row="2" Grid.Column="0"/>-->
+                    <Button Content="8" Grid.Row="2" Grid.Column="1"
+                            Grid.ColumnSpan="2"/>
+                    <!--<Button Content="9" Grid.Row="2" Grid.Column="2"/>-->
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="GridSplitter">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Button Content="1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"/>
+                    <GridSplitter Grid.Row="0" Grid.Column="1" Width="3" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                                  Grid.RowSpan="3"/>
+                    <Button Content="2" Grid.Row="0" Grid.Column="2"/>
+                    <GridSplitter Grid.Row="1" Grid.Column="2" Height="3" 
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                  Grid.ColumnSpan="1"/>
+                    <Button Content="3" Grid.Row="2" Grid.Column="2"/>
+                </Grid>
+               
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
